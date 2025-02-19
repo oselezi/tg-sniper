@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `User` ADD COLUMN `isPaid` BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE `User` ADD COLUMN `paymentSignature` VARCHAR(191) NULL;

@@ -1,0 +1,92 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                Int      @id @default(autoincrement())
+  telegramId        BigInt       @unique
+  verifySignature   String
+  verifyWallet      String    @unique
+  verified          Boolean
+  createdAt         DateTime @default(now())
+  lastCheck         DateTime? @default(now())
+  isPaid            Boolean @default(false)
+  paymentSignature  String?
+
+  state             String?
+
+  wallets           Wallet[]
+}
+
+model Wallet {
+  id                Int      @id @default(autoincrement())
+
+  userId            Int
+  user              User     @relation(fields: [userId], references: [id])
+
+  address           String   @unique
+  encodedPk         String   @db.VarChar(255)
+  label             String?   @db.VarChar(20)
+
+  buyAmount         Float @default(1)
+  minMcap           Int @default(100)
+  maxMcap           Int @default(100)
+  minLiquidity      Int @default(100)
+  maxLiquidity      Int @default(100)
+
+  buySlippage       Int @default(100)
+  sellSlippage       Int @default(100)
+  priorityFee       Int @default(10000)
+  isMev             Boolean @default(false)
+  tipMev            Int @default(10000)
+  triggerMode       Int @default(0)
+  deployerAge       Int @default(0)
+  agScore           Int @default(0)
+  dexscreenerPaid   Int @default(0)
+
+  sellPreset1       Int @default(25)
+  sellPreset2       Int @default(50)
+
+  startHour         Int?
+  endHour           Int?
+  ttc               Int?
+
+  isActive          Boolean @default(true)
+  isDefault         Boolean @default(false)
+  createdAt         DateTime @default(now())
+
+  transactions      Transaction[]
+}
+
+model Transaction {
+  id                Int      @id @default(autoincrement())
+
+  walletId          Int
+  wallet            Wallet   @relation(fields: [walletId], references: [id])
+
+  signature         String   @unique
+  type              String
+
+  amountIn          Float
+  amountOut         Float
+  tokenId           String
+  poolId            String
+  buyTxId           Int?
+  triggerMode       Int?
+
+  timestamp         Int?
+  blockId           Int?
+
+  createdAt         DateTime @default(now())
+}

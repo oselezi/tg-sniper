@@ -1,0 +1,424 @@
+{
+  "address": "Bb5Di3ZNc5bqnVcWP1umWqiZewsxdrrHDWaqT7j1iN6S",
+  "metadata": {
+    "name": "ag_router",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "initialize",
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "setting",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  101,
+                  116,
+                  116,
+                  105,
+                  110,
+                  103,
+                  115
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_recipient",
+          "docs": [
+            "CHECKED: fee_recipient account"
+          ]
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "docs": [
+            "Sysvar for program account"
+          ],
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "fee_bps",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "pf_buy",
+      "discriminator": [
+        229,
+        224,
+        49,
+        67,
+        91,
+        110,
+        132,
+        72
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "setting",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  101,
+                  116,
+                  116,
+                  105,
+                  110,
+                  103,
+                  115
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_recipient",
+          "writable": true,
+          "relations": [
+            "setting"
+          ]
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "user_ata",
+          "writable": true
+        },
+        {
+          "name": "bonding_curve",
+          "writable": true
+        },
+        {
+          "name": "bonding_curve_ata",
+          "writable": true
+        },
+        {
+          "name": "pf_global"
+        },
+        {
+          "name": "pf_fee_recipient",
+          "writable": true
+        },
+        {
+          "name": "pf_event_authority",
+          "writable": true
+        },
+        {
+          "name": "pf_program"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "docs": [
+            "Sysvar for program account"
+          ],
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "slippage",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "pf_sell",
+      "discriminator": [
+        61,
+        108,
+        186,
+        220,
+        53,
+        31,
+        174,
+        230
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "setting",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  101,
+                  116,
+                  116,
+                  105,
+                  110,
+                  103,
+                  115
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_recipient",
+          "writable": true,
+          "relations": [
+            "setting"
+          ]
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "user_ata",
+          "writable": true
+        },
+        {
+          "name": "bonding_curve",
+          "writable": true
+        },
+        {
+          "name": "bonding_curve_ata",
+          "writable": true
+        },
+        {
+          "name": "pf_global"
+        },
+        {
+          "name": "pf_fee_recipient",
+          "writable": true
+        },
+        {
+          "name": "pf_event_authority",
+          "writable": true
+        },
+        {
+          "name": "pf_program"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "docs": [
+            "Sysvar for program account"
+          ],
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "slippage",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "update_setting",
+      "discriminator": [
+        81,
+        35,
+        242,
+        143,
+        134,
+        117,
+        47,
+        27
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "setting"
+          ]
+        },
+        {
+          "name": "setting",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  101,
+                  116,
+                  116,
+                  105,
+                  110,
+                  103,
+                  115
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "new_authority",
+          "docs": [
+            "CHECKED: authority account"
+          ],
+          "optional": true
+        },
+        {
+          "name": "new_fee_recipient",
+          "docs": [
+            "CHECKED: fee_recipient account"
+          ],
+          "optional": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "fee_bps",
+          "type": {
+            "option": "u64"
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "RouterSetting",
+      "discriminator": [
+        176,
+        210,
+        177,
+        75,
+        167,
+        165,
+        162,
+        176
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "AtaNotFound",
+      "msg": "ATA not found"
+    },
+    {
+      "code": 6001,
+      "name": "ReceiverNotFound",
+      "msg": "Receiver not found"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidAmount",
+      "msg": "Invalid amount"
+    },
+    {
+      "code": 6003,
+      "name": "InvalidSlippage",
+      "msg": "Invalid slippage"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidData",
+      "msg": "Invalid data"
+    },
+    {
+      "code": 6005,
+      "name": "InsufficientAccounts",
+      "msg": "Accounts not enough"
+    }
+  ],
+  "types": [
+    {
+      "name": "RouterSetting",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "fee_recipient",
+            "type": "pubkey"
+          },
+          {
+            "name": "fee_bps",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ]
+}
